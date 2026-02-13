@@ -2,26 +2,33 @@ pipeline {
     agent any
 
     tools {
-        maven 'M2_HOME'
+        maven 'Maven'
+        jdk 'JDK17'
     }
 
     stages {
 
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                sh 'mvn clean compile'
+                git 'https://github.com/YOUR_USERNAME/YOUR_REPO.git'
             }
         }
 
-        stage('Test') {
+        stage('Build') {
             steps {
-                sh 'mvn test'
+                sh 'mvn clean install -DskipTests'
             }
         }
 
         stage('Package') {
             steps {
-                sh 'mvn package'
+                sh 'mvn package -DskipTests'
+            }
+        }
+
+        stage('Run App (optional)') {
+            steps {
+                sh 'nohup java -jar target/*.jar &'
             }
         }
     }

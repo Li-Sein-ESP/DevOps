@@ -9,7 +9,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/YOUR-REPO-URL.git'
+                git 'https://github.com/Li-Sein-ESP/DevOps.git'
             }
         }
 

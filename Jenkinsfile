@@ -7,12 +7,6 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/Li-Sein-ESP/DevOps.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 sh 'mvn clean compile'
@@ -28,12 +22,6 @@ pipeline {
         stage('Package') {
             steps {
                 sh 'mvn package'
-            }
-        }
-
-        stage('Run App (optional)') {
-            steps {
-                sh 'echo "Build completed successfully"'
             }
         }
     }
